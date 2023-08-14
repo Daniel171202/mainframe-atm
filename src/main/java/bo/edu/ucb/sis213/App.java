@@ -125,7 +125,8 @@ public class App {
             System.out.println("3. Realizar un retiro.");
             System.out.println("4. Cambiar PIN.");
             System.out.println("5. Realizar una transferencia.");
-            System.out.println("6. Salir.");
+            System.out.println("6. Mostrar historico de movimientos.");
+            System.out.println("7. Salir.");
             System.out.print("Seleccione una opción: ");
             int opcion = scanner.nextInt();
 
@@ -201,7 +202,7 @@ public class App {
                 e.printStackTrace();
             }
             //update historico
-            actualizarHistorico("deposito",cantidad);
+            actualizarHistorico("Deposito",cantidad);
             System.out.println("Depósito realizado con éxito. Su nuevo saldo es: $" + saldo);
         }
     }
@@ -228,7 +229,7 @@ public class App {
                 e.printStackTrace();
             }
             //update historico
-            actualizarHistorico("retiro",-cantidad);
+            actualizarHistorico("Retiro..",-cantidad);
             System.out.println("Retiro realizado con éxito. Su nuevo saldo es: $" + saldo);
         }
     }
@@ -338,7 +339,7 @@ public class App {
                 e.printStackTrace();
             }
             //update historico
-            actualizarHistorico("transferencia",-cantidad);
+            actualizarHistorico("Transferencia",-cantidad);
             System.out.println("Transferencia realizada con éxito. Su nuevo saldo es: $" + saldo);
             
         }
@@ -365,6 +366,23 @@ public class App {
             }
     }
     public static void mostrarHistorico(){
-        
+        //show the historic of the user
+        String query = "SELECT * FROM historico WHERE usuario_id = ?";
+        try {
+            PreparedStatement preparedStatement = getConnection().prepareStatement(query);
+            preparedStatement.setInt(1, usuarioId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                System.out.println("Historico de operaciones:");
+                System.out.println("Fecha\t\t\tTipo\t\t\tCantidad");
+                do{
+                    System.out.println(resultSet.getDate("fecha")+"\t\t"+resultSet.getString("tipo_operacion")+"\t\t"+resultSet.getDouble("cantidad"));
+                }while(resultSet.next());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }    
 }
