@@ -97,5 +97,5 @@ CREATE DATABASE atm;
 use atm;
 ```
 
-5. Ejecutan el script init.sql de la carpeta database.
+5. Ejecutan el script atm.sql de la carpeta database.
 
