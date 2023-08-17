@@ -107,10 +107,9 @@ public class Menu extends JFrame {
     }
 
     public static void main(String[] args) {
-        OperacionesDAO operacionesDAO = new OperacionesDAO();
         Cuenta cuenta;
         try {
-            cuenta = operacionesDAO.obtenerCuenta(1);
+            cuenta = OperacionesDAO.obtenerCuenta(1);
             new Menu(cuenta);
 
         } catch (SQLException e) {

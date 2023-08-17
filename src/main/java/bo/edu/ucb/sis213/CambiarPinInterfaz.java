@@ -95,10 +95,9 @@ public class CambiarPinInterfaz extends JFrame {
             public void run() {
                 // Crear una cuenta de ejemplo (puedes adaptar esto según tu lógica)
 
-                OperacionesDAO operacionesDAO = new OperacionesDAO();
                 Cuenta cuenta;
                 try {
-                    cuenta = operacionesDAO.obtenerCuenta(1);
+                    cuenta = OperacionesDAO.obtenerCuenta(1);
                     new CambiarPinInterfaz(cuenta);
         
                 } catch (SQLException e) {

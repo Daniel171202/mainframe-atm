@@ -63,9 +63,8 @@ public class LoginInterfaz extends JFrame {
 
 
                 try {
-                    OperacionesDAO operacionesDAO = new OperacionesDAO();
 
-                    Cuenta cuenta=operacionesDAO.obtenerCuentabyCi(ci);
+                    Cuenta cuenta=OperacionesDAO.obtenerCuentabyCi(ci);
                     if (cuenta != null) {
                         if (cuenta.getPin().equals(pin)) {
                             JOptionPane.showMessageDialog(null, "Inicio de sesión exitoso");

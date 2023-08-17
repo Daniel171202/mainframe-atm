@@ -64,9 +64,8 @@ public class TransferenciaInterfaz extends JFrame {
                     if (monto > 0) {
                         // Lógica para realizar la transferencia
                         try {
-                            OperacionesDAO operacionesDAO = new OperacionesDAO();
-                            Cuenta cuentaDestinatario = operacionesDAO.obtenerCuentabyCi(destinatario);
-                            operacionesDAO.registrarTransferencia(cuenta, cuentaDestinatario.getId() ,monto);
+                            Cuenta cuentaDestinatario = OperacionesDAO.obtenerCuentabyCi(destinatario);
+                            OperacionesDAO.registrarTransferencia(cuenta, cuentaDestinatario.getId() ,monto);
                             dispose();
                         } catch (SQLException e1) {
                             // TODO Auto-generated catch block
@@ -111,10 +110,9 @@ public class TransferenciaInterfaz extends JFrame {
             public void run() {
                 // Verificar el inicio de sesión aquí (no mostrar si no se ha iniciado sesión)
                 // Si el inicio de sesión es exitoso, mostrar la ventana de transferencia:
-OperacionesDAO operacionesDAO = new OperacionesDAO();
         Cuenta cuenta;
         try {
-            cuenta = operacionesDAO.obtenerCuenta(1);
+            cuenta = OperacionesDAO.obtenerCuenta(1);
             new TransferenciaInterfaz(cuenta);
 
         } catch (SQLException e) {

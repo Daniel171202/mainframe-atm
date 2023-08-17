@@ -47,8 +47,7 @@ public class DepositoInterfaz extends JFrame {
                         JOptionPane.showMessageDialog(null, "Depósito exitoso: $" + monto);
 
                         try {
-                            OperacionesDAO operacionesDAO = new OperacionesDAO();
-                            operacionesDAO.registrarDeposito(cuenta, monto);
+                            OperacionesDAO.registrarDeposito(cuenta, monto);
                             dispose();
 
                         } catch (Exception e1) {
@@ -96,10 +95,9 @@ public class DepositoInterfaz extends JFrame {
             public void run() {
                 // Verificar el inicio de sesión aquí (no mostrar si no se ha iniciado sesión)
                 // Si el inicio de sesión es exitoso, mostrar la ventana de depósito:
-OperacionesDAO operacionesDAO = new OperacionesDAO();
         Cuenta cuenta;
         try {
-            cuenta = operacionesDAO.obtenerCuenta(1);
+            cuenta = OperacionesDAO.obtenerCuenta(1);
             new DepositoInterfaz(cuenta);
 
         } catch (SQLException e) {

@@ -46,8 +46,7 @@ public class RetiroInterfaz extends JFrame {
                         // Lógica para realizar el retiro
 
                         try {
-                            OperacionesDAO operacionesDAO = new OperacionesDAO();
-                            operacionesDAO.registrarRetiro(cuenta, monto);
+                            OperacionesDAO.registrarRetiro(cuenta, monto);
                             dispose();
                         } catch (SQLException e1) {
                             // TODO Auto-generated catch block
@@ -93,10 +92,9 @@ public class RetiroInterfaz extends JFrame {
             public void run() {
                 // Verificar el inicio de sesión aquí (no mostrar si no se ha iniciado sesión)
                 // Si el inicio de sesión es exitoso, mostrar la ventana de retiro:
-                OperacionesDAO operacionesDAO = new OperacionesDAO();
                 Cuenta cuenta;
                 try {
-                    cuenta = operacionesDAO.obtenerCuenta(1);
+                    cuenta = OperacionesDAO.obtenerCuenta(1);
                     new RetiroInterfaz(cuenta);
         
                 } catch (SQLException e) {
